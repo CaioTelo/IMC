@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- BootStrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <!-- Estilo CSS -->
+    <link rel="stylesheet" href="style.css">
+    <title>Calculando IMC</title>
+    
+</head>
+<body style="background-color: #40E0D0; max-width: 1300px;" class="" >
+    <div class="d-flex justify-content-center mt-5">
+        <div class="areaIMC w-50"> <!-- Tabela IMC  -->
+            <h1 class="d-flex justify-content-center mt-3">Tabela IMC</h1>
+            <div class="d-flex flex-row mt-5 text-uppercase font-weight-bold ">
+                <div class="ml-5">
+                    <h2 class="">IMC</h2>
+                    <ul class=" list-unstyled ">
+                        <li>Menos do que 18,5</li>
+                        <li>Entre 18,5 e 24,9</li>
+                        <li>Entre 25 e 29,9</li>
+                        <li>Entre 30 e 34,9</li>
+                        <li>Entre 35 e 39,9</li>
+                        <li>Mais do que 40</li>
+                    </ul>
+                </div>  
+                <div class="ml-auto mr-5"> 
+                    <h2 class="">Resultado</h2>
+                    <ul class="list-unstyled">
+                        <li>Abaixo do peso</li>
+                        <li>Peso Normal</li>
+                        <li>Sobrepeso</li>
+                        <li>Obesidade grau 1</li>
+                        <li>Obesidade grau 2</li>
+                        <li>Obesidade grau 3</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group ml-5 altura mt-5"> <!-- Forms  -->
+                <form class="form-inline">
+                    <label class="text-uppercase font-weight-bold " for="altura">Altura:</label>
+                    <input class="form-control ml-2 w-75 " type="text" id="altura" placeholder="ex: 150">
+                </form>
+            </div>
+            <div class="form-group ml-5 peso">  
+                <form class="form-inline">
+                    <label class="text-uppercase font-weight-bold" for="peso">Peso:</label>
+                    <input class="form-control ml-4 w-75" type="text" id="peso" placeholder="ex: 80">
+                </form>
+            </div> 
+            <button class="btn btn-outline-success ml-5 mb-5"  onclick="calcularImc()">Calcular</button> 
+            <div class="areaResultado">
+                <p id="resultado"> 
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+    <script>
+        let peso;
+        let altura;
+        let imc;
+        function calcularImc(){
+            peso = document.getElementById('peso').value;
+            altura = document.getElementById('altura').value;
+            altura /= 100;
+            imc = peso/(altura*altura);
+            let num = imc.toFixed(2)
+            let classificacao;
+            if(imc < 18.5){
+                classificacao = 'Abaixo do peso'
+                document.getElementById('resultado').style.background = 'rgba(255, 0, 0, 0.50)'
+            }else if(imc >= 18.5 && imc <= 24.9){
+                classificacao = 'Peso Normal';
+                document.getElementById('resultado').style.background = 'rgba(49, 233, 80, 0.5)'
+            }else if(imc >= 25 && imc <= 29.9){
+                classificacao = 'Sobrepeso';
+                document.getElementById('resultado').style.background = 'rgba(255, 251, 0, 0.5)'
+            }else if(imc >= 30 && imc <= 34.9){
+                classificacao = 'Obesidade grau 1';
+                document.getElementById('resultado').style.background = 'rgba(255, 251, 0, 0.5)'
+            }else if(imc >= 35 && imc <= 39.9){
+                classificacao = 'obesidade grau 2';
+                document.getElementById('resultado').style.background = 'rgba(255, 0, 0, 0.50)'
+            }else if(imc >= 40){
+                classificacao = 'obesidade grau 3';
+                document.getElementById('resultado').style.background = 'rgba(255, 0, 0, 0.50)'
+            }
+            
+            document.getElementById('resultado').style.margin = '0px 50px 30px 50px'
+            document.getElementById('resultado').style.borderRadius = '10px'
+            document.getElementById('resultado').style.padding = '20px'
+            document.getElementById('resultado').style.fontSize = '20px'
+            document.getElementById('resultado').innerHTML = `O valor de massa corporal é ${num} e a classificação é ${classificacao}`
+            
+        }  
+    </script>
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>
